@@ -25,8 +25,18 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
+const path = require('path');
+
 // --------------- Error Handler ---------------
 app.use(errorHandler);
+
+// --------------- Serve Frontend (Production) ---------------
+const frontendPath = path.join(__dirname, '../../frontend/dist');
+app.use(express.static(frontendPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
 
 // --------------- Start Server ---------------
 app.listen(PORT, () => {
