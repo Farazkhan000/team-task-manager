@@ -26,7 +26,6 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
-const path = require('path');
 
 // --------------- Error Handler ---------------
 app.use(errorHandler);
