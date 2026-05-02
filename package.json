@@ -2,8 +2,8 @@
   "name": "team-task-manager-root",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "cd backend && python3 -m venv venv && ./venv/bin/pip install -r requirements.txt && cd ../frontend && npm install",
+    "postinstall": "cd frontend && npm install",
     "build": "cd frontend && npm run build",
-    "start": "cd backend && python3 app.py"
+    "start": "cd backend && .\\venv\\Scripts\\python app.py"
   }
 }
