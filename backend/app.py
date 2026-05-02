@@ -10,6 +10,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    app.url_map.strict_slashes = False
     
     # Configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///dev.db')
