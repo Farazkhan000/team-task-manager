@@ -2,8 +2,8 @@
   "name": "team-task-manager-root",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "cd backend && npm install && cd ../frontend && npm install",
-    "build": "cd frontend && npm run build && cd ../backend && npx prisma generate",
-    "start": "cd backend && npm start"
+    "postinstall": "cd backend && python -m venv venv && .\\venv\\Scripts\\pip install -r requirements.txt && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && .\\venv\\Scripts\\python app.py"
   }
 }
