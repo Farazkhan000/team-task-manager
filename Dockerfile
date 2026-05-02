@@ -26,12 +26,15 @@ COPY backend /app/backend
 # Copy built frontend from Stage 1
 COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
+# Switch to backend directory for runtime
+WORKDIR /app/backend
+
 # Expose the port
 EXPOSE 5000
 
 # Set environment variables
-ENV FLASK_APP=backend/app.py
+ENV FLASK_APP=app.py
 ENV PYTHONUNBUFFERED=1
 
 # Run migrations and start the server
-CMD ["sh", "-c", "cd backend && flask db upgrade && gunicorn --bind 0.0.0.0:$PORT \"app:create_app()\""]
+CMD ["sh", "-c", "flask db upgrade && gunicorn --bind 0.0.0.0:$PORT \"app:create_app()\""]
