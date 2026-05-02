@@ -634,6 +634,16 @@ img {
   color: var(--text-muted);
 }
 
+.sidebar-user .btn-ghost {
+  color: var(--danger);
+  opacity: 0.7;
+}
+
+.sidebar-user .btn-ghost:hover {
+  background: var(--danger-bg);
+  opacity: 1;
+}
+
 /* Main Content */
 .main-content {
   flex: 1;
