@@ -3,6 +3,7 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
+from werkzeug.middleware.proxy_fix import ProxyFix
 from dotenv import load_dotenv
 from models import db
 
@@ -10,6 +11,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
     app.url_map.strict_slashes = False
     
     # Configuration
