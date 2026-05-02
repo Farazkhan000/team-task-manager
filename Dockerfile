@@ -33,7 +33,7 @@ WORKDIR /app/backend
 EXPOSE 5000
 
 # Set environment variables
-ENV FLASK_APP=app.py
+ENV FLASK_APP="app:create_app()"
 ENV PYTHONUNBUFFERED=1
 
 # Run migrations and start the server
