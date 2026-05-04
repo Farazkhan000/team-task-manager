@@ -81,20 +81,8 @@ export default function ProjectsPage() {
                   </div>
                   {/* Progress bar */}
                   {totalTasks > 0 && (
-                    <div style={{
-                      marginTop: '12px',
-                      height: '4px',
-                      background: 'var(--bg-input)',
-                      borderRadius: '2px',
-                      overflow: 'hidden',
-                    }}>
-                      <div style={{
-                        width: `${(doneTasks / totalTasks) * 100}%`,
-                        height: '100%',
-                        background: 'var(--accent-gradient)',
-                        borderRadius: '2px',
-                        transition: 'width 0.5s ease',
-                      }} />
+                    <div className="progress-container">
+                      <div className="progress-bar" style={{ width: `${(doneTasks / totalTasks) * 100}%` }} />
                     </div>
                   )}
                 </div>

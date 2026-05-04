@@ -39,13 +39,13 @@ export default function DashboardPage() {
   const { stats, recentTasks, overdueTasksList } = data;
 
   const statCards = [
-    { label: 'Total Projects', value: stats.totalProjects, color: '#6366f1' },
-    { label: 'Total Tasks', value: stats.totalTasks, color: '#8b5cf6' },
-    { label: 'To Do', value: stats.todoTasks, color: '#3b82f6' },
-    { label: 'In Progress', value: stats.inProgressTasks, color: '#f59e0b' },
-    { label: 'Completed', value: stats.doneTasks, color: '#22c55e' },
-    { label: 'Overdue', value: stats.overdueTasks, color: '#ef4444' },
-    { label: 'Team Members', value: stats.totalMembers, color: '#06b6d4' },
+    { label: 'Total Projects', value: stats.totalProjects },
+    { label: 'Total Tasks', value: stats.totalTasks },
+    { label: 'To Do', value: stats.todoTasks },
+    { label: 'In Progress', value: stats.inProgressTasks },
+    { label: 'Completed', value: stats.doneTasks },
+    { label: 'Overdue', value: stats.overdueTasks },
+    { label: 'Team Members', value: stats.totalMembers },
   ];
 
   return (
@@ -56,16 +56,9 @@ export default function DashboardPage() {
       <div className="page-body">
         {/* Stats Grid */}
         <div className="stats-grid">
-          {statCards.map(({ label, value, color }) => (
+          {statCards.map(({ label, value }) => (
             <div className="stat-card" key={label}>
-              <span className="stat-value" style={{
-                background: `linear-gradient(135deg, ${color}, ${color}cc)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}>
-                {value}
-              </span>
+              <span className="stat-value">{value}</span>
               <span className="stat-label">{label}</span>
             </div>
           ))}
