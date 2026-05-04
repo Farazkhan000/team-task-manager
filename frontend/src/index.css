@@ -213,6 +213,63 @@ a {
 .badge-done { background: var(--success); }
 .badge-overdue { background: var(--danger); color: white; }
 
+/* ---------- Alerts ---------- */
+.alert {
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--black);
+  margin-bottom: var(--space-6);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--font-sm);
+  box-shadow: var(--shadow-hard);
+}
+
+.alert-error {
+  background: var(--danger);
+  color: var(--white);
+}
+
+.alert-success {
+  background: var(--success);
+  color: var(--black);
+}
+
+/* ---------- Tasks ---------- */
+.task-item {
+  background: var(--white);
+  border: var(--border-width) solid var(--black);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  box-shadow: var(--shadow-hard);
+  transition: all var(--transition-fast);
+}
+
+.task-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.task-item.overdue {
+  border-color: var(--danger);
+}
+
+.task-title {
+  font-size: var(--font-base);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: var(--space-1);
+}
+
+.task-meta {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 /* ---------- Dashboard ---------- */
 .stats-grid {
   display: grid;
@@ -242,6 +299,23 @@ a {
   font-weight: 700;
   text-transform: uppercase;
   font-size: var(--font-sm);
+}
+
+/* ---------- Dashboard Sections ---------- */
+.dashboard-section {
+  margin-bottom: var(--space-10);
+}
+
+.section-title {
+  font-size: var(--font-xl);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width) solid var(--black);
 }
 
 /* ---------- Sidebar ---------- */
@@ -436,9 +510,16 @@ a {
   background: var(--white);
   border: var(--border-width) solid var(--black);
   padding: var(--space-8);
-  box-shadow: 10px 10px 0px #000;
+  box-shadow: 12px 12px 0px #000;
   width: 90%;
   max-width: 500px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
 }
 
 /* ---------- Loading ---------- */
@@ -452,6 +533,13 @@ a {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.loading-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
 }
 
 /* ---------- Project Grid ---------- */

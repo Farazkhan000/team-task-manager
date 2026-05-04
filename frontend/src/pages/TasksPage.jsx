@@ -103,14 +103,14 @@ export default function TasksPage() {
       </div>
       <div className="page-body">
         {filtered.length === 0 ? (
-          <div className="empty-state">
-            <div className="empty-state-icon">✅</div>
-            <div className="empty-state-title">No tasks found</div>
-            <div className="empty-state-text">
+          <div className="card" style={{ textAlign: 'center', padding: 'var(--space-10)', background: 'var(--white)' }}>
+            <div style={{ fontSize: 'var(--font-3xl)', marginBottom: 'var(--space-4)' }}>✅</div>
+            <h2 style={{ marginBottom: 'var(--space-2)' }}>No tasks found</h2>
+            <p style={{ color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', fontSize: 'var(--font-xs)' }}>
               {filter === 'ALL'
                 ? 'Create a project and add tasks to see them here.'
                 : 'No tasks match this filter.'}
-            </div>
+            </p>
           </div>
         ) : (
           <div className="table-wrapper">
@@ -127,21 +127,23 @@ export default function TasksPage() {
               </thead>
               <tbody>
                 {filtered.map(task => (
-                  <tr key={task.id} style={isOverdue(task.dueDate, task.status) ? { borderLeft: '3px solid var(--danger)' } : {}}>
+                  <tr key={task.id} className={isOverdue(task.dueDate, task.status) ? 'overdue-row' : ''}>
                     <td>
-                      <div style={{ fontWeight: 600 }}>{task.title}</div>
+                      <div className="task-title" style={{ fontSize: 'var(--font-sm)' }}>{task.title}</div>
                       {task.description && (
-                        <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', marginTop: '2px' }}>
-                          {task.description.substring(0, 80)}{task.description.length > 80 ? '…' : ''}
+                        <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', fontWeight: 500 }}>
+                          {task.description.substring(0, 60)}{task.description.length > 60 ? '…' : ''}
                         </div>
                       )}
                     </td>
-                    <td>{task.project?.name || '—'}</td>
-                    <td>{task.assignedTo?.name || <span style={{ color: 'var(--text-muted)' }}>Unassigned</span>}</td>
-                    <td style={isOverdue(task.dueDate, task.status) ? { color: 'var(--danger)', fontWeight: 600 } : {}}>
-                      {formatDate(task.dueDate)}
+                    <td style={{ fontWeight: 700, textTransform: 'uppercase', fontSize: 'var(--font-xs)' }}>{task.project?.name || '—'}</td>
+                    <td style={{ fontWeight: 700, textTransform: 'uppercase', fontSize: 'var(--font-xs)' }}>{task.assignedTo?.name || <span style={{ color: 'var(--text-muted)' }}>Unassigned</span>}</td>
+                    <td style={{ fontWeight: 700, fontSize: 'var(--font-xs)' }}>
+                      <span style={isOverdue(task.dueDate, task.status) ? { color: 'var(--danger)' } : {}}>
+                        {formatDate(task.dueDate)}
+                      </span>
                       {isOverdue(task.dueDate, task.status) && (
-                        <span className="badge badge-overdue" style={{ marginLeft: 6 }}>Overdue</span>
+                        <div className="badge badge-overdue" style={{ marginLeft: 0, marginTop: 4, display: 'block', width: 'fit-content' }}>Overdue</div>
                       )}
                     </td>
                     <td>
@@ -149,7 +151,7 @@ export default function TasksPage() {
                         className="form-select"
                         value={task.status}
                         onChange={(e) => handleStatusChange(task.id, e.target.value)}
-                        style={{ padding: '4px 28px 4px 8px', fontSize: 'var(--font-xs)' }}
+                        style={{ padding: '4px 28px 4px 8px', fontSize: 'var(--font-xs)', boxShadow: '2px 2px 0px #000' }}
                       >
                         <option value="TODO">To Do</option>
                         <option value="IN_PROGRESS">In Progress</option>
@@ -157,7 +159,7 @@ export default function TasksPage() {
                       </select>
                     </td>
                     <td>
-                      <button className="btn btn-ghost btn-sm" onClick={() => openEdit(task)}>Edit</button>
+                      <button className="btn btn-ghost btn-sm" onClick={() => openEdit(task)} style={{ padding: '4px 8px' }}>Edit</button>
                     </td>
                   </tr>
                 ))}
